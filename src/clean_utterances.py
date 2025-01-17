@@ -1,3 +1,5 @@
+# cleans each line before saving
+
 import re
 
 def removeDotString(sentence:str, regex = re.compile(r' \w{1,13}')) -> str:
