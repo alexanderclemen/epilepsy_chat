@@ -1,5 +1,5 @@
 from constants import TO_POLER
-from remove_dot_string import removeDotString
+from clean_utterances import cleanUtterance
 
 # read file in /data/POLER/
 def readChiUtterances(child_id:str, folder:str) -> list:
@@ -15,13 +15,9 @@ def readChiUtterances(child_id:str, folder:str) -> list:
         for line in file:
             # if line starts with *CHI (the childs utterance) keep it
             if line.startswith('*CHI'):
-                # TODO: this step should be done later in the pipeline
                 
-                # remove the '*CHI\t' preambel and the '\n'
-                line = line[6:].strip()
-                
-                # remove the \w{1,13} part
-                line = removeDotString(line)
+                # preprocessing of lines
+                line = cleanUtterance(line)
                 
                 # append line to list of lines
                 lines.append(line)
