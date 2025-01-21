@@ -2,13 +2,13 @@
 
 import re
 
-def removeDotString(sentence:str, regex = re.compile(r' \w{1,13}')) -> str:
+def removeDotString(line:str, regex = re.compile(r' \w{1,13}')) -> str:
      #  works but \\x15 does not
-    sentence = re.sub(pattern = regex, repl = '', string = sentence)
-    return sentence
+    line = re.sub(pattern = regex, repl = '', string = line)
+    return line
 
 
-def cleanUtterance(line:str) -> str:
+def cleanLine(line:str) -> str:
     """clean a utterance
     
     Args:

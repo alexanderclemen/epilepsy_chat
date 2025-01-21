@@ -4,6 +4,8 @@
 TO_DATA = '../data/'
 TO_POLER = '../data/POLER/'
 
+CWE_TYPES = ['Chronic', 'NewOnset', 'Match']
+
 # taken from https://talkbank.org/manuals/CLAN.pdf
 CHAT_SYMBOLS = {"repetition": r'\[\/\]',
                 "retraction": r'\[\/\/\]',
