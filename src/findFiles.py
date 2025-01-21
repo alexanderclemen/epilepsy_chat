@@ -1,6 +1,6 @@
 # finds all files in given the folder name (i.e. desease type)
 
-from constants import TO_POLER
+from constants import TO_POLER, TO_DATA
 import glob
 
 def findChiFiles(cwe_type:str) -> list:
@@ -29,12 +29,8 @@ def findCsvs(cwe_type:str) -> list:
     """
     all_csv_files = []
     #read all files
-    for file in glob.glob(f"{TO_POLER}{cwe_type}/*.csv"):
+    for file in glob.glob(f"{TO_DATA}cwe_lines/*.csv"):
         file = file[-7:] # csv from file path
         all_csv_files.append(file) # append csv to list
     
     return all_csv_files
-
-# print(findChiIDs('Chronic'))
-# print()
-# print(findCsvs('Chronic'))

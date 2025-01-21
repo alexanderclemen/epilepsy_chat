@@ -1,5 +1,6 @@
 epichatV*
 data/POLER*
 data/cwe_lines/*
-src/__pycache__/*
-notes.txt
+src/__pycach*
+src/testing*
+notes.md

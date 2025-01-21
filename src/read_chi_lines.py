@@ -1,3 +1,5 @@
+# reads cha files, extracts only children lines, leans them and returns them as a list of tuples
+
 from constants import TO_POLER
 from clean_lines import cleanLine
 
@@ -31,5 +33,3 @@ def readChiLines(child_id:str, cwe_type:str) -> list:
                 # append line to list of lines
                 lines.append((child_id, cwe_type, line_id, line))
     return lines
-
-# print(readChiLines('302', 'Chronic'))
