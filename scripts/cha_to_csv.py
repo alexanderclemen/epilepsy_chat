@@ -26,7 +26,7 @@ def linesToCsv(cwe_type:str):
         
         # convert list to pandas dataframe
         df_temp = pd.DataFrame(rows)
-        df_temp.to_csv(f'{TO_DATA}C{file}_{cwe_type}.csv', index=False, sep='\t')
+        df_temp.to_csv(f'{TO_DATA}cwe_lines/{line[0]}_{cwe_type}.csv', index=False, sep='\t')
         
     return print(f'Done with {cwe_type}')
 
