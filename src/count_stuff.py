@@ -2,14 +2,15 @@
 
 import pandas as pd
 import re
-from constants import TO_DATA, CHAT_SYMBOLS
 
-def countErrors(child_id:str) -> tuple:
-    
-    path = f'{TO_DATA}cwe_lines/{child_id}_Chronic.csv' # TODO: remove this
+from src.constants import CHAT_SYMBOLS
+
+def countErrors(path:str) -> dict:    
     with open(path, 'r') as file:
         df = pd.read_csv(file, sep='\t')
-        error_dict = {}
+        
+        # initialize dictionary with child_id already added
+        error_dict = {'child_id': list(set(df['child_id']))}
 
         error_types = list(CHAT_SYMBOLS.keys())
 
@@ -21,11 +22,11 @@ def countErrors(child_id:str) -> tuple:
                 nr_errors = len(re_error.findall(line))
                 count += nr_errors
                 
-            error_dict[error] = count
-    return (child_id, error_dict)
+            error_dict[error] = [count]
+            
+    return (error_dict)
 
-def countWordsLines(child_id:str) -> tuple:
-    path = f'{TO_DATA}cwe_lines/{child_id}_Chronic.csv' # TODO: remove this
+def countWordsLines(path:str) -> dict:
     with open(path, 'r') as file:
         df = pd.read_csv(file, sep='\t')
         nr_words = 0
@@ -42,12 +43,9 @@ def countWordsLines(child_id:str) -> tuple:
 
             nr_words += len(line.split())
 
-        count_dict = {'nr_words': nr_words, 
-                      'nr_lines': len(df),
-                      'nr_words_per_line': round(nr_words/len(df), 3)}
-
-    return (child_id, count_dict)
-
-
-print(countErrors('C302'))
-print(countWordsLines('C302'))
+        count_dict = {'child_id': list(set(df['child_id'])),
+                      'nr_words': [(nr_words)], 
+                      'nr_lines': [(len(df))],
+                      'nr_words_per_line': [(round(nr_words/len(df), 3))]}
+        
+    return (count_dict)

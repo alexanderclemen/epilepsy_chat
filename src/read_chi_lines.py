@@ -1,7 +1,7 @@
 # reads cha files, extracts only children lines, leans them and returns them as a list of tuples
 
-from constants import TO_POLER
-from clean_lines import cleanLine
+from src.clean_lines import cleanLine
+from src.constants import TO_POLER
 
 # read file in /data/POLER/
 def readChiLines(child_id:str, cwe_type:str) -> list:
