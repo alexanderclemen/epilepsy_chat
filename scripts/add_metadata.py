@@ -1,3 +1,5 @@
+# This script adds metadata to the errors_words.csv file.
+
 import pandas as pd
 import sys
 sys.path.append("..")  # TODO: Cheat to make src work
@@ -6,9 +8,8 @@ from src.constants import TO_POLER, TO_DATA
 
 # read in data
 df_errs_wrds = pd.read_csv(filepath_or_buffer = f"{TO_DATA}errors_words.csv", sep='\t')
-
 df_meta = pd.read_excel(f"{TO_POLER}0demo.xls", sheet_name='Sheet1')
-
+print(len(df_meta))
 # subset df_meta to only include child_id, age, EOWAT
 df_meta = df_meta[['SUBNBR', 'Age (months)', 'Gender', 'GROUP ID', 'EOWVTSS']]
 df_meta.rename(columns={'SUBNBR': 'child_id', 

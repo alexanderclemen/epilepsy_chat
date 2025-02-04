@@ -19,11 +19,8 @@ def findChiFiles(cwe_type:str) -> list:
         list_of_cha_files.append(file) # append child id to list
     return list_of_cha_files
 
-def findCsvs(cwe_type:str) -> list:
+def findCsvs() -> list:
     """finds all csv children ids in a folder
-
-    Args:
-        cwe_type (str): name of folder in /data/POLER/ that contains the CHAT file
 
     Returns:
         all_csv_files: list of children csv file names
