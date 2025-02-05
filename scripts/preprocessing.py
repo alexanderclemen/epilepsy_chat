@@ -11,7 +11,4 @@
 # errors | int
 # ...
 # Neuropsychological assessment (from file)
-
-cha_to_csv.py
-csv_to_data.py
-add_metadata.py
+# EOWAT | int

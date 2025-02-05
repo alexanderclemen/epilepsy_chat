@@ -1,3 +1,5 @@
+# This script reads all CHAT files and extracts all lines from each file.
+
 import pandas as pd
 
 import sys
