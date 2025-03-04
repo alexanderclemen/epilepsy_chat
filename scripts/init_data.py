@@ -1,16 +1,23 @@
 # This script reads all CHAT files and extracts all lines from each file.
-
 import pandas as pd
 
+
 import sys
-sys.path.append("..")  # TODO: Cheat to make src work
+sys.path.append("../")
 
 from src.constants import TO_DATA, CWE_TYPES
 from src.read_chi_lines import readChiLines
 from src.findFiles import findChiFiles
 
-def linesToCsv(cwe_type:str):
+def linesToCsv(cwe_type:str) -> None:
+    """__summary__
     
+    Args:
+        cwe_type (str): 
+        
+    Return:
+        None
+    """    
     chi_files = findChiFiles(cwe_type)
         
     for file in chi_files:
@@ -24,7 +31,7 @@ def linesToCsv(cwe_type:str):
         for line in lines:
             rows.append({
                 'child_id': line[0], # readChiLines() changes file to child_id (302 -> C302)
-                'cwe_type': line[1], 
+                'cwe_type': line[1], # documents desese type (Chronic, NewOnset, Match)
                 'line_id': line[2],
                 'line': line[3]})
         

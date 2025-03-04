@@ -1,0 +1,10 @@
+data;accuracy;predictors;feature_importances
+../data/cwe_recent.csv;0.0;repetition;0.10166948811770245
+../data/cwe_recent.csv;0.0;unfilled_pause;0.3194516141466358
+../data/cwe_recent.csv;0.0;unfilled_pause_longer;0.015615969215969222
+../data/cwe_recent.csv;0.0;unfilled_pause_longest;0.0
+../data/cwe_recent.csv;0.0;error;0.10501365059103157
+../data/cwe_recent.csv;0.0;nr_words;0.189600031686287
+../data/cwe_recent.csv;0.0;nr_words_per_line;0.1294460438231001
+../data/cwe_recent.csv;0.0;gender;0.02329003527336861
+../data/cwe_recent.csv;0.0;age_months;0.11591316714590529

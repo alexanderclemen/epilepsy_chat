@@ -1,0 +1,14 @@
+data;accuracy;predictors;feature_importances
+../data/cwe_all.csv;0.36363636363636365;repetition;0.12624545057415681
+../data/cwe_all.csv;0.36363636363636365;retraction;0.12360200056058325
+../data/cwe_all.csv;0.36363636363636365;unfilled_pause;0.05937280455924267
+../data/cwe_all.csv;0.36363636363636365;unfilled_pause_longer;0.018096906963189732
+../data/cwe_all.csv;0.36363636363636365;unfilled_pause_longest;0.004543108457811562
+../data/cwe_all.csv;0.36363636363636365;nonword;0.0
+../data/cwe_all.csv;0.36363636363636365;filled_pause;0.0
+../data/cwe_all.csv;0.36363636363636365;error;0.054452302519491486
+../data/cwe_all.csv;0.36363636363636365;nr_lines;0.12564336916545352
+../data/cwe_all.csv;0.36363636363636365;nr_words;0.13009323685322746
+../data/cwe_all.csv;0.36363636363636365;nr_words_per_line;0.20870565740489702
+../data/cwe_all.csv;0.36363636363636365;gender;0.028682313643355925
+../data/cwe_all.csv;0.36363636363636365;age_months;0.12056284929859049

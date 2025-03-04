@@ -1,0 +1,7 @@
+data;accuracy;predictors;feature_importances
+../data/cwe_chronic.csv;0.2857142857142857;repetition;0.39517017710623037
+../data/cwe_chronic.csv;0.2857142857142857;unfilled_pause;0.1856341811409497
+../data/cwe_chronic.csv;0.2857142857142857;unfilled_pause_longer;0.011990326967169746
+../data/cwe_chronic.csv;0.2857142857142857;error;0.08056530891436135
+../data/cwe_chronic.csv;0.2857142857142857;gender;0.08891153580835992
+../data/cwe_chronic.csv;0.2857142857142857;age_months;0.23772847006292902

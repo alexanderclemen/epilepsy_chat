@@ -11,7 +11,7 @@ def findChiFiles(cwe_type:str) -> list:
         cwe_type (str): name of folder in /data/POLER/ that contains the CHAT file
 
     Returns:
-        list_of_cha_files: list of children ids
+        list_of_cha_files (list): list of children ids
     """
     list_of_cha_files = []
     for file in glob.glob(f"{TO_POLER}{cwe_type}/*.cha"):

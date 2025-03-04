@@ -1,11 +1,19 @@
-# counts errors a child makes in entire dialogue
+# This file contains functions that count the number of errors, words, lines, etc. in a given file.
 
 import pandas as pd
 import re
 
 from src.constants import CHAT_SYMBOLS
 
-def countErrors(path:str) -> dict:    
+def countErrors(path:str) -> dict: 
+    """Counts speech errors (e.g. repetition, pause, filled_pause etc.) in a docuent.
+
+    Args:
+        path (str): path to a .csv file
+
+    Returns:
+        dict: 
+    """
     with open(path, 'r') as file:
         df = pd.read_csv(file, sep='\t')
         
@@ -27,6 +35,14 @@ def countErrors(path:str) -> dict:
     return (error_dict)
 
 def countWordsLines(path:str) -> dict:
+    """Counts the number of words in a line of text.
+
+    Args:
+        path (str): _description_
+
+    Returns:
+        dict: _description_
+    """
     with open(path, 'r') as file:
         df = pd.read_csv(file, sep='\t')
         nr_words = 0

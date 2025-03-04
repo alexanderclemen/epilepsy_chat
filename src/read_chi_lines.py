@@ -23,7 +23,7 @@ def readChiLines(child_id:str, cwe_type:str) -> list:
             # if line starts with *CHI (the childs utterance) keep it
             if line.startswith('*CHI'):
                 
-                # preprocessing of lines
+                # minor preprocessing of lines
                 line = cleanLine(line)
                 
                 # create line id
