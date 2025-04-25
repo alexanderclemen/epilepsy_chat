@@ -1,20 +1,24 @@
 # This script reads all CHAT files and extracts all lines from each file.
 import pandas as pd
-
-
 import sys
 sys.path.append("../")
 
 from src.constants import TO_DATA, CWE_TYPES
 from src.read_chi_lines import readChiLines
-from src.findFiles import findChiFiles
+from src.find_files import findChiFiles
+
 
 def linesToCsv(cwe_type:str) -> None:
-    """__summary__
+    """Extracts annotated lines from .cha files and saves them as .csv file to disk.
+    
+    The function locates all CHAT (.cha) files, matching a children with epilepsy type
+    (Chronic, NewOnset, Match). Then desired lines are extracted. Finally, Child ID 
+    (e.g. 307), CWE type (e.g. Chronic), line ID and the line are saved to the disk.
     
     Args:
-        cwe_type (str): 
-        
+        cwe_type (str): The epilepsy classification of the child (here: 'Chronic', 
+        'NewOnset', 'Match') used to locate relevant files and tag the resulting data.
+
     Return:
         None
     """    

@@ -1,25 +1,21 @@
+# This script creates correlation matrixes.
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
+import sys
+sys.path.append("../")
 
-# Set working directory (adjust path as needed)
-import os
-os.chdir('/home/alex/Documents/02_study/duesseldorf/MA_Linguistik/23_WS_Python/epilepsy_chat/scripts')
+from src.constants import TO_DATA
 
-# Load data
-df = pd.read_csv('../data/cwe_all.csv', sep=';')
+df = pd.read_csv(f'{TO_DATA}cwe_all.csv', sep=';')
 
-# Glimpse the data
-print(df.head())
-
-# Create the correlation matrix for selected predictors
+# list all predictors (once)
 predictors = [
     'repetition', 
     'retraction', 
     'unfilled_pause', 
-    'unfilled_pause_longer', 
-    'unfilled_pause_longest', 
+    # 'unfilled_pause_longer', # excluded because not present in all groups
+    # 'unfilled_pause_longest', # excluded because not present in all groups 
     'nonword',  
     'filled_pause',  
     'error', 
@@ -28,125 +24,87 @@ predictors = [
     'nr_words_per_line'
 ]
 
-# Compute the correlation matrix
-cor_matrix = df[predictors].corr()
+def plot_correlations(cor_matrix, title):
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cor_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
+    plt.title(title, fontsize=16, pad=20)
+    plt.tight_layout()
+    plt.show()
 
-# Plot the correlation matrix
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
+#### All children ####
+cor_matrix = df[predictors].corr() # calculates correlations
+plot_correlations(cor_matrix, title="Correlation Matrix for All Children")
 
 # Refine predictors by removing highly correlated variables and others with missing data
 predictors_refined = [
     'repetition', # .59 with 'retraction' -> 2 models
     'retraction', # .59 with 'repititopns' -> 2 models
     'unfilled_pause', 
-    'unfilled_pause_longer', # vavoured over 'unfilled_pause_longest' because more data
-    # 'unfilled_pause_longest', # .62 with 'unfilled_pause_longer'
-    # 'nonword',  # removed as there are none
-    # 'filled_pause',  # removed as there are none
+    'nonword',  
+    'filled_pause',  
     'error', 
     'nr_lines',
-    # 'nr_words', # .77 with 'nr_lines'
+    # 'nr_words', # corr with 'nr_lines' AND nr_words_per_line
     'nr_words_per_line'
 ]
 
-cor_matrix_refined = df[predictors_refined].corr()
-
-# Plot refined correlation matrix
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix_refined, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
-
-# Remove irrelevant features
-rm_features = ['unfilled_pause_longest', 'nonword', 'filled_pause', 'nr_words']
+# remove features
+rm_features = ['unfilled_pause_longer', 'unfilled_pause_longest',  
+               'nr_words']
 df = df.drop(columns=rm_features)
-
-# Save the processed dataframe
-df.to_csv('../data/cwe_all_selected.csv', sep=';', index=False)
+df.to_csv(f'{TO_DATA}cwe_all_selected.csv', sep=';', index=False)
 
 
-
-#### Recent children only ####
-df_recent = pd.read_csv('../data/cwe_recent.csv', sep=';')
-
-# Glimpse the data
-print(df_recent.head())
-
-# Create the correlation matrix for recent children
-cor_matrix_recent = df_recent[predictors].corr()
-
-# Plot the correlation matrix for recent children
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix_recent, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
+#### new onset children only ####
+df_newonset = pd.read_csv(f'{TO_DATA}cwe_newonset.csv', sep=';')
+cor_matrix_newonset = df_newonset[predictors].corr()
+plot_correlations(cor_matrix_newonset, title="Correlation Matrix for New Onset Children")
 
 # Refine predictors
-predictors_refined_recent = [
-    'repetition', # .67 with 'retraction' -> 2 models
-    'retraction', # .67 with 'repititopns' -> 2 models
+predictors_refined_newonset = [
+    'repetition', # .69 with 'retraction' -> 2 models
+    'retraction', # .69 with 'repititopns' -> 2 models
     'unfilled_pause', 
-    'unfilled_pause_longer', # vavoured over 'unfilled_pause_longest' because more data
-    # 'unfilled_pause_longest', # removed as there are none
-    # 'nonword',  # removed as there are none
-    # 'filled_pause',  # removed as there are none
+    'nonword',  
+    'filled_pause',  
     'error', 
     'nr_lines',
-    # 'nr_words', # .82 with 'nr_lines'
+    # 'nr_words', # corr with 'nr_lines' and nr_words_per_line
     'nr_words_per_line'
 ]
 
-cor_matrix_refined_recent = df_recent[predictors_refined_recent].corr()
-
-# Plot refined correlation matrix for recent children
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix_refined_recent, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
+cor_matrix_refined_newonset = df_newonset[predictors_refined_newonset].corr()
 
 # Remove irrelevant features
-rm_features_recent = ['unfilled_pause_longest', 'nonword', 'filled_pause', 'nr_words']
-df_recent = df_recent.drop(columns=rm_features_recent)
-
-# Save the processed dataframe
-df_recent.to_csv('../data/cwe_recent_selected.csv', sep=';', index=False)
+rm_features = ['unfilled_pause_longer', 'unfilled_pause_longest', 
+               'nr_words']
+df_newonset = df_newonset.drop(columns=rm_features)
+df_newonset.to_csv(f'{TO_DATA}cwe_newonset_selected.csv', sep=';', index=False)
 
 
 
 #### Chronic children only ####
-df_chronic = pd.read_csv('../data/cwe_chronic.csv', sep=';')
+df_chronic = pd.read_csv(f'{TO_DATA}cwe_chronic.csv', sep=';')
 
-# Glimpse the data
-print(df_chronic.head())
-
-# Create the correlation matrix for chronic children
+# correlation matrix for chronic children
 cor_matrix_chronic = df_chronic[predictors].corr()
-
-# Plot the correlation matrix for chronic children
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix_chronic, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
+plot_correlations(cor_matrix_chronic, title="Correlation Matrix for Chronic Children")
 
 # Refine predictors
 predictors_refined_chronic = [
-    'repetition',
-    'retraction',
+    'repetition', # .57 with 'retraction' -> 2 models
+    'retraction', # .57 with 'repititopns' -> 2 models
     'unfilled_pause', 
-    'unfilled_pause_longer',
+    'nonword',  
+    'filled_pause',  
     'error', 
     'nr_lines',
+    # 'nr_words', # corr with nr_lines AND nr_words_per_line
     'nr_words_per_line'
 ]
 
-cor_matrix_refined_chronic = df_chronic[predictors_refined_chronic].corr()
-
-# Plot refined correlation matrix for chronic children
-plt.figure(figsize=(10, 8))
-sns.heatmap(cor_matrix_refined_chronic, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-plt.show()
-
-# Remove irrelevant features
-rm_features_chronic = ['unfilled_pause_longest', 'nonword', 'filled_pause', 'nr_words']
-df_chronic = df_chronic.drop(columns=rm_features_chronic)
-
-# Save the processed dataframe
-df_chronic.to_csv('../data/cwe_chronic_selected.csv', sep=';', index=False)
+# remove features and save
+rm_features = ['unfilled_pause_longer', 'unfilled_pause_longest',  
+               'nr_words']
+df_chronic = df_chronic.drop(columns=rm_features)
+df_chronic.to_csv(f'{TO_DATA}cwe_chronic_selected.csv', sep=';', index=False)

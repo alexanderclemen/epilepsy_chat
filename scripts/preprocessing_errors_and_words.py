@@ -1,9 +1,9 @@
-# create df of errors
+# This script creates ...
 import pandas as pd
 import sys
 sys.path.append("../")
 
-from src.findFiles import findCsvs
+from src.find_files import findCsvs
 from src.count_stuff import countErrors, countWordsLines
 from src.constants import TO_DATA
 

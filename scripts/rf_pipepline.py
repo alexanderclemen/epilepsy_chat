@@ -1,25 +1,34 @@
+# This script is the random forest classifier pipeline
 import pandas as pd
+import matplotlib.pyplot as plt
 import argparse
 import sys
 sys.path.append("../")
 
-import matplotlib.pyplot as plt
-
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.tree import plot_tree
 from sklearn.metrics import accuracy_score
 
-from src.constants import TO_DATA
-from src.rf_predictors import predictors
+from src.constants import TO_DATA, predictors
 
-
-def main(input_file):
+def main(input_file:str) -> str:
+  """Trains and evaluates a Random Forest Classifier.
   
+  ...
+
+  Args:
+      input_file (str): name of .csv file (here: cwe_all_selected.csv, cwe_chronic_selected.csv, cwe_newonset_selected.csv)
+
+  Returns:
+      _type_: _description_
+  """
   print(f'{input_file}')
   
   # read in data
   df = pd.read_csv(f'{TO_DATA}{input_file}', sep=';')
-  X = df[predictors] # Features
+  
+  X = df[predictors] # they are taken from a script in scr.rf
   y = df['cwe_sick'] # Labels
   
   print(f'Predictors: {predictors}')
@@ -29,12 +38,6 @@ def main(input_file):
   # create the model with 100 trees, 
   rf_model = RandomForestClassifier(n_estimators=100,
                                     random_state=666)
-  
-  # min_samples_split: This controls the minimum number of samples required to split an internal node. A larger value would prevent the tree from splitting too often and reduce complexity.
-  
-  # min_samples_leaf: This controls the minimum number of samples required to be at a leaf node. Increasing this value helps simplify the tree and might be seen as a form of pruning because it forces the tree to generalize more.
-  
-  # max_leaf_nodes: If you want to control the maximum number of leaf nodes in each tree, you can set this parameter. It directly limits tree complexity by restricting the number of leaves.
 
   # fit model
   rf_model.fit(X_train, y_train)
@@ -44,13 +47,10 @@ def main(input_file):
   # calculate the accuracy
   accuracy = accuracy_score(y_test, y_pred)
   print(f'Accuracy: {accuracy * 100:.2f}%')
-
- # check for robustness k fold cross validation
- # retain only experimment motivated features
-
+  
   # get the feature importances
   feature_importances = rf_model.feature_importances_
-
+  
   # plot the feature importances
   plt.figure(figsize=(10, 6))
   plt.barh(predictors , feature_importances, color='skyblue')
@@ -69,7 +69,7 @@ def main(input_file):
 if __name__ == "__main__":
   # Parse arguments from command line
   parser = argparse.ArgumentParser(description="Train Random Forest model and visualize feature importances.")
-  parser.add_argument('input_file', type=str, help="Path to the input CSV file.")
+  parser.add_argument('input_file', type=str, help="Path to the input file.")
     
   args = parser.parse_args()
   
