@@ -1,0 +1,6 @@
+data;accuracy;predictors;feature_importances
+cwe_recent_selected.csv;0.5;unfilled_pause;0.19650976965955322
+cwe_recent_selected.csv;0.5;filled_pause;0.188541822727537
+cwe_recent_selected.csv;0.5;error;0.0781458714125381
+cwe_recent_selected.csv;0.5;nr_lines;0.34579558266008487
+cwe_recent_selected.csv;0.5;nr_words_per_line;0.19100695354028688

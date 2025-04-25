@@ -1,0 +1,6 @@
+data;accuracy;predictors;feature_importances
+cwe_all_selected.csv;0.6363636363636364;retraction;0.19403034245252437
+cwe_all_selected.csv;0.6363636363636364;unfilled_pause;0.1288714330442644
+cwe_all_selected.csv;0.6363636363636364;filled_pause;0.13569760043553997
+cwe_all_selected.csv;0.6363636363636364;nr_lines;0.23802137659737277
+cwe_all_selected.csv;0.6363636363636364;nr_words_per_line;0.30337924747029865

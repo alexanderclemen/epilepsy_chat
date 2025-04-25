@@ -1,0 +1,9 @@
+data;accuracy;predictors;feature_importances
+cwe_chronic_selected.csv;0.5714285714285714;retraction;0.14711036789444926
+cwe_chronic_selected.csv;0.5714285714285714;unfilled_pause;0.09477662000688157
+cwe_chronic_selected.csv;0.5714285714285714;nonword;0.05510588798819377
+cwe_chronic_selected.csv;0.5714285714285714;filled_pause;0.10751122077115022
+cwe_chronic_selected.csv;0.5714285714285714;error;0.05874515109507367
+cwe_chronic_selected.csv;0.5714285714285714;nr_lines;0.14368883906195812
+cwe_chronic_selected.csv;0.5714285714285714;nr_words_per_line;0.2352869920896441
+cwe_chronic_selected.csv;0.5714285714285714;age_months;0.15777492109264912
