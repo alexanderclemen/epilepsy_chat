@@ -1,5 +1,0 @@
-data;accuracy;predictors;feature_importances
-../data/cwe_chronic_selected.csv;0.2857142857142857;repetition;0.39555927786368617
-../data/cwe_chronic_selected.csv;0.2857142857142857;nr_lines;0.1189033338032027
-../data/cwe_chronic_selected.csv;0.2857142857142857;nr_words_per_line;0.3149216456714995
-../data/cwe_chronic_selected.csv;0.2857142857142857;age_months;0.1706157426616117

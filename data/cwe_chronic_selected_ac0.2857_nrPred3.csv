@@ -1,4 +1,0 @@
-data;accuracy;predictors;feature_importances
-../data/cwe_chronic_selected.csv;0.2857142857142857;nr_lines;0.30549310773730265
-../data/cwe_chronic_selected.csv;0.2857142857142857;nr_words_per_line;0.37076013817519077
-../data/cwe_chronic_selected.csv;0.2857142857142857;age_months;0.3237467540875067

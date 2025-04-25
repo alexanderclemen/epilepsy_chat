@@ -1,3 +1,0 @@
-data;accuracy;predictors;feature_importances
-../data/cwe_chronic_selected.csv;0.42857142857142855;repetition;0.7041278180456745
-../data/cwe_chronic_selected.csv;0.42857142857142855;unfilled_pause;0.29587218195432546
