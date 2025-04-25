@@ -1,11 +1,10 @@
 # reads cha files, extracts only children lines, leans them and returns them as a list of tuples
-
 from src.clean_lines import cleanLine
 from src.constants import TO_POLER
 
 # read file in /data/POLER/
 def readChiLines(child_id:str, cwe_type:str) -> list:
-    """reads a single CHAT file and returns a list of all utterances
+    """Reads a single CHAT file and returns a list of all utterances.
 
     Args:
         child_id (str): id of child
@@ -28,7 +27,7 @@ def readChiLines(child_id:str, cwe_type:str) -> list:
                 
                 # create line id
                 line_counter += 1
-                line_id = f'U{line_counter:03}_{child_id}'
+                line_id = f'U{line_counter:03}_C{child_id}'
                 
                 # append line to list of lines
                 lines.append((child_id, cwe_type, line_id, line))

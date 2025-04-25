@@ -31,4 +31,10 @@ def cleanLine(line:str) -> str:
     
     # each line in the CHAT Transcription format contains a string that is irrelevant to the analysis   
     line = removeDotString(line)
+    
+    # remove everything between <> when &~ is present
+    # in the lines, word repetitions, and part word repetitions are 
+    # 
+    line = re.sub(r'<.*&~.*>', '', line)
+    
     return line
