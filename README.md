@@ -129,6 +129,7 @@ While running, the script provides a barplot for ease of use but also saves the 
 
 #### Logistic Regression (`logistic_regression.R`)
 You may run the R script from console or in your prefered IDE.
+Depending on your operating system you may need to change `setwd('../data')` to `setwd('..\data')`
 
 ```
 $ Rscript logistic_regression.R

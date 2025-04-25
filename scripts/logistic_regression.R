@@ -3,11 +3,10 @@ library(tidyverse)
 library(lmerTest)
 
 # hardcode home
-setwd('/home/alex/Documents/02_study/duesseldorf/MA_Linguistik/23_WS_Python/epilepsy_chat/scripts')
-
+home = getwd()
+setwd(home)
+# setwd('/home/alex/Documents/02_study/duesseldorf/MA_Linguistik/23_WS_Python/epilepsy_chat/scripts')
 setwd('../data')
-getwd()
-
 
 ########### logistic regression for all children ###############
 

@@ -7,6 +7,20 @@ sys.path.append("../")
 
 from src.constants import TO_DATA
 
+def plot_correlations(cor_matrix, title):
+    """Plot a correlation matrix.
+
+    Args:
+        cor_matrix (pd.DataFrame): Data for the corr matrix
+        title (str): Title of the plot.
+    """
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cor_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
+    plt.title(title, fontsize=16, pad=20)
+    plt.tight_layout()
+    plt.show()
+
+
 df = pd.read_csv(f'{TO_DATA}cwe_all.csv', sep=';')
 
 # list all predictors (once)
@@ -23,13 +37,6 @@ predictors = [
     'nr_words',
     'nr_words_per_line'
 ]
-
-def plot_correlations(cor_matrix, title):
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(cor_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
-    plt.title(title, fontsize=16, pad=20)
-    plt.tight_layout()
-    plt.show()
 
 #### All children ####
 cor_matrix = df[predictors].corr() # calculates correlations

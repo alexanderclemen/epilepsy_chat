@@ -7,21 +7,23 @@ sys.path.append("../")
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.tree import plot_tree
 from sklearn.metrics import accuracy_score
 
-from src.constants import TO_DATA, predictors
+from src.constants import TO_DATA
+from src.predictors import predictors
 
 def main(input_file:str) -> str:
   """Trains and evaluates a Random Forest Classifier.
   
-  ...
+  This function reads a .csv file containing features for classifying whether children are sick. 
+  It splits the data into training and test sets, fits a Random Forest classifier, evaluates its 
+  performance using accuracy, and plots feature importances.
 
   Args:
-      input_file (str): name of .csv file (here: cwe_all_selected.csv, cwe_chronic_selected.csv, cwe_newonset_selected.csv)
+      input_file (str): Name of .csv file (here: cwe_all_selected.csv, cwe_chronic_selected.csv, cwe_newonset_selected.csv)
 
   Returns:
-      _type_: _description_
+      str: Path to the output .csv file containing accuracy and feature importances.
   """
   print(f'{input_file}')
   

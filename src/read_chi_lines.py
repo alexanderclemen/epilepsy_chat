@@ -9,6 +9,7 @@ def readChiLines(child_id:str, cwe_type:str) -> list:
     Args:
         child_id (str): id of child
         cwe_type (str): name of cwe_type in /data/POLER/ that contains the CHAT file
+                        (Chronic, NewOnset, Match)
         
     Returns: (list) list of tuples (child_id, cwe_type, line)
     """
